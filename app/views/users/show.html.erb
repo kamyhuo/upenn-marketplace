@@ -1,0 +1,40 @@
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1><%= @user.username %>'s Shops</h1>
+  </div>
+<%= render 'layouts/nav' %>
+
+<div class = "container">
+<div class="row">
+  <div class="col-12">
+    <h2>
+      
+      <div class="float-right">
+        <% if logged_in? %>
+          <% if @user == current_user %>
+            <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-primary' %>
+            <%= link_to 'Delete Account', current_user, method: :delete, class: 'btn btn-danger' %>
+            </div>
+
+            <% @user.shops.each do |shop| %>
+    <tr>
+<td>
+      <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
+        <td><h5><%= shop.description %> </h5></td>
+      <br>
+      <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+
+            <%= link_to 'Create New Listing', new_shop_listing_path(shop) %>
+    <% end %>
+
+
+          <% end %>
+        <% end %>
+      </div>
+    </h2>
+  </div>
+</div>
+
+<br>
+
+
+</div>

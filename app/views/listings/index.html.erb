@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>State</th>
+      <th>Description</th>
+      <th>Shop</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.title %></td>
+        <td><%= listing.price %></td>
+        <td><%= listing.state %></td>
+        <td><%= listing.description %></td>
+        <td><%= link_to 'Show', "/shops/#{@shop.id}/listings/#{listing.id}" %></td>
+        <td><%= link_to 'Edit', edit_shop_listing_path(listing, @shop) %></td>
+        <td><%= link_to 'Destroy', shop_listing_path(listing, @shop), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Listing', new_shop_listing_path %>

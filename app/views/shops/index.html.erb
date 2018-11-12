@@ -1,0 +1,45 @@
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>All Shops</h1>
+  </div>
+<%= render 'layouts/nav' %>
+
+
+ <div class="container">
+  <br>
+  <%= link_to 'Add New Shop', '/shops/new' %>
+  <br>
+<% if @shops.empty? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+<% else %>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @shops.each do |shop| %>
+    <tr>
+<td>
+      <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
+        <td><h5><%= shop.description %> </h5></td>
+      <br>
+      <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+    <% end %>
+
+  </tbody>
+  </table>
+   </ol>
+</div>
+<% end %>
+</div>
+<br>
+

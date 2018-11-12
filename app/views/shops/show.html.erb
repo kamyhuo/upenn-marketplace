@@ -1,0 +1,22 @@
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1><%= @shop.name %></h1>
+  <h6>owned by 
+  <% @shop.users.each do |user| %>
+<%= link_to user.username, "/users/#{user.id}", {:style=>'color:#00BBFF;', :class => "css_class"}  %> </h6>
+<% end %>
+  </div>
+
+<%= render 'layouts/nav' %>
+
+<p id="notice"><%= notice %></p>
+
+<div class = "container">
+<p>
+  <strong>Description:</strong>
+  <%= @shop.description %>
+</p>
+
+
+
+<%= link_to 'Back', shops_path %>
+</div>

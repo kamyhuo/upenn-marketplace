@@ -1,0 +1,22 @@
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Penn Marketplace</h1>
+</div>
+<%= render 'layouts/nav' %>
+<% if logged_in? %>
+  <div class="container">
+    <h1>Welcome to Penn's Marketplace!</h1>
+    <h6>A place where students can buy and sell items. Head on over to "All Shops" to explore!</h6>
+  <br>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <h1>Welcome to Penn Marketplace!</h1>
+      <p>Sign up or log in to get started!</p>
+    </div>
+  </div>
+<% end %>
