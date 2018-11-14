@@ -1,4 +1,4 @@
-<%= form_with(model: [@shop, listing], :html => { multipart: true }, local: true) do |form| %>
+<%= form_with(model: [shop, listing], :html => { multipart: true }, local: true) do |form| %>
   <% if listing.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
@@ -13,34 +13,32 @@
 
   <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control", placeholder: "Enter the listing name" %>
+    <%= form.text_field :title, id: :listing_name, class: "form-control", placeholder: "Enter the listing name" %>
   </div>
 
     <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, class: "form-control", placeholder: "Enter the listing description" %>
+    <%= form.text_area :description, id: :listing_description, class: "form-control", placeholder: "Enter the listing description" %>
   </div>
-  
+
   <div class="form-group">
     <%= form.label :price %>
-    <%= form.text_field :price, class: "form-control", placeholder: "Enter the listing price" %>
+    <%= form.text_field :price, id: :listing_price, class: "form-control", placeholder: "Enter the listing price" %>
   </div>
 
-
-
 <div class="form-group">
-    <%= form.check_box :state%>
-    <%= form.label :active %> 
+    <%= form.check_box :state, id: :listing_state%>
+    <%= form.label :state %> 
   </div>
 
     <div class="form-group">
     <%= form.label :image %>
-    <%= form.file_field :description, class: "form-control" %>
+    <%= form.file_field :image, class: "form-control" %>
   </div>
 
 
 
-  <div class="actions">
+  <div class="badge">
     <%= form.submit %>
   </div>
 <% end %>

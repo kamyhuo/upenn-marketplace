@@ -12,22 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username, id: :user_username, class: 'form-control' %>
+    <b><%= form.label :username %></b>
+    <%= form.text_field :username, id: :user_username, class: 'form-control' ,placeholder: "ex: firstname.lastname"%>
   </div>
 
+
+<br>
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email, class: 'form-control' %>
+    <b><%= form.label :password %></b>
+    <%= form.password_field :password, id: :user_password, class: 'form-control' ,  value: ""%>
   </div>
-  </div>
-
+  <br>
   <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password, id: :user_password, class: 'form-control' %>
+    <b><%= form.label :email %></b>
+    <%= form.text_field :email, id: :user_email, class: 'form-control', placeholder: "ex: xyz@seas.upenn.edu" %>
   </div>
-
-  <div class="actions">
+<br>
+  <div class="badge">
     <%= form.submit %>
   </div>
 <% end %>

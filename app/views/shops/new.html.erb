@@ -1,7 +1,12 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1>Create New Shop</h1>
 </div>
-
+<% if logged_in? %>
 <%= render 'form', user: @user, shop: @shop %>
+
+<% else %>
+<% controller.redirect_to root_path %>
+<% end %>
+
 
 <%= link_to 'Back', shops_path %>

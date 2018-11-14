@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, except: [:index, :new, :create]
-  before_action :set_user, except: [:edit, :update, :all]
+  before_action :set_user, except: [:edit, :update]
+ 
 
   # GET /shops
   # GET /shops.json
@@ -70,7 +71,7 @@ class ShopsController < ApplicationController
     end   
 
     def set_user
-    @user = current_user
+       @user = current_user
    end
 
     # Never trust parameters from the scary internet, only allow the white list through.

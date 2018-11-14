@@ -6,6 +6,7 @@
 
  <div class="container">
   <br>
+  <% if logged_in? %>
   <%= link_to 'Add New Shop', '/shops/new' %>
   <br>
 <% if @shops.empty? %>
@@ -14,6 +15,7 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Owner(s)</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +25,7 @@
       <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Owner(s)</th>
       </tr>
     </thead>
     <tbody>
@@ -30,15 +33,26 @@
     <tr>
 <td>
       <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
-        <td><h5><%= shop.description %> </h5></td>
+        <td><h5><%= shop.description %> </h5>
       <br>
-      <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+  <td>    
+  <% shop.users.each do |user| %> 
+    <h5><b><%= link_to user.username, "/users/#{user.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
+     <% end %>
+</td>
+<td>
+  <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span> </td>
+
+
     <% end %>
 
   </tbody>
   </table>
    </ol>
 </div>
+<% end %>
+<% else %>
+<% controller.redirect_to root_path %>
 <% end %>
 </div>
 <br>

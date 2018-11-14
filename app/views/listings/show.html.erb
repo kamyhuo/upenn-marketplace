@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @listing.image_url %>
+
 
 <p>
   <strong>Title:</strong>
@@ -22,10 +22,8 @@
   <%= @listing.description %>
 </p>
 
-<p>
-  <strong>Shop:</strong>
-  <%= @listing.shop %>
-</p>
+<%= image_tag @listing.image_url %>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>
+
+<%= link_to 'Edit', edit_shop_listing_path(@listing) %> |
+<%= link_to 'Back', shop_listings_path(@listing) %>

@@ -3,13 +3,21 @@
 <br>
 <div class = "container form-group">
     <b><%= form.label :name %></b>
-    <%= form.text_field :name, id: :shop_name, class: "form-control" %>
+    <%= form.text_field :name, id: :shop_name, class: "form-control", placeholder: "Enter the shop name" %>
   
 <br>
+
+
   <div class="form-group">
     <b><%= form.label :description %></b>
-    <%= form.text_field :description, id: :shop_description, class: "form-control" %>
+    <ul>
+    <h10><li>What type of items are being sold?</li></h10>
+    <h10><li>Where can the items be picked up?</li></h10>
+    <h10><li>Tell a little bit about yourself!</li></h10>
+</ul>
+    <%= form.text_area :description,  :cols => "100", :rows => "10", id: :shop_description, class: "form-control" %>
   </div>
+
 
   <div class="badge">
     <%= form.submit %>

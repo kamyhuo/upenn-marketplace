@@ -18,17 +18,23 @@
             <% @user.shops.each do |shop| %>
     <tr>
 <td>
-      <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
+    <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></td>
         <td><h5><%= shop.description %> </h5></td>
       <br>
-      <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+     <h6> <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
 
-            <%= link_to 'Create New Listing', new_shop_listing_path(shop) %>
+            <%= link_to 'Create New Listing', new_shop_listing_path(shop) %></h6>
+            <br>
+<br>
     <% end %>
 
 
           <% end %>
         <% end %>
+
+        <% if !logged_in? %>
+           <% redirect_to root_path %>
+         <% end %>
       </div>
     </h2>
   </div>

@@ -1,11 +1,13 @@
+require 'pry'
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
-  before_action :set_shop, except: [:edit, :update]
+  before_action :set_listing, except: [:create, :new, :index]
+  before_action :set_shop
+  before_action :set_user, except: [:edit, :update]
 
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    @listings = @shop.listings
   end
 
   # GET /listings/1
@@ -26,7 +28,8 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = @shop.listings.create(listing_params)
+    binding.pry
+    @listing = @shop.listings.new({"title"=>"asdf", "price"=>".3", "state"=>"1", "description"=>"asdf", "image"=>nil})
 
     respond_to do |format|
       if @listing.save
@@ -44,7 +47,7 @@ class ListingsController < ApplicationController
   def update
     respond_to do |format|
       if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
+        format.html { redirect_to "/shops/#{@shop.id}/listings/#{@listing.id}", notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }
@@ -58,9 +61,18 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to "/shops/#{@shop.id}/listings", notice: 'Listing was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def state
+    if @listing.state
+      @listing.update_attribute(:state, params[:listing_state])
+    else
+      @listing.update_attribute(:state, !params[:listing_state])
+    end
+    redirect_back fallback_location: { action: 'show', id: @listing.id }
   end
 
   private
@@ -73,8 +85,11 @@ class ListingsController < ApplicationController
       @shop = Shop.find(params[:shop_id])
     end
 
+    def set_user
+       @user = current_user
+   end
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :price, :state, :description, :shop_id, :user_id, :image)
+      params.require(:listing).permit(:title, :price, :state, :description, :shop_id, :image, :user_id)
     end
 end

@@ -5,12 +5,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users do
-  	resources :shops do
-	  resources :listings do
-	  	resources :images
-	  end
-  end
-end
+  	resources :shops 
+	end
 
  resources :shops do
 	  resources :listings do
@@ -18,13 +14,9 @@ end
 	  end
   end
 
-  post '/users/:id/shops', to: 'users#add_shop'
-  delete '/users/:id/shops/:shop_id', to: 'users#delete_shop'
-  post '/shops/:id/users', to: 'shops#add_user'
-  delete '/shops/:id/users/:user_id', to: 'shops#delete_user'
-
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
+  post '/shops/:shop_id/listings/:id', to: 'listings#state'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
