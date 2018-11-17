@@ -1,6 +1,12 @@
-<h1>Editing Listing</h1>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Editing Listing</h1>
+  </div>
+  <%= render 'layouts/nav' %>
+  <div class = "container">
+
 
 <%= render 'form', listing: @listing %>
 
-<%= link_to 'Show', @listing %> |
-<%= link_to 'Back', listings_path %>
+<%= link_to 'Show', shop_listing_path %> |
+<%= link_to 'Back', shop_listing_path %>
+</div>

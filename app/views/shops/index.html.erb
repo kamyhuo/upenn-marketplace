@@ -32,17 +32,16 @@
     <% @shops.each do |shop| %>
     <tr>
 <td>
-      <h5><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
+      <h4><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h4></li></td>
         <td><h5><%= shop.description %> </h5>
       <br>
-  <td>    
-  <% shop.users.each do |user| %> 
-    <h5><b><%= link_to user.username, "/users/#{user.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h5></li></td>
-     <% end %>
-</td>
-<td>
-  <%= link_to 'Delete', "/shops/#{shop.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span> </td>
 
+  <td><% shop.users.each do |user| %> 
+     <h5><%= link_to user.username, "/users/#{user.id}",{:style=>'color:#A82903;', :class => "css_class"} %> </h5><br>
+    
+
+
+   <% end %> </td>
 
     <% end %>
 

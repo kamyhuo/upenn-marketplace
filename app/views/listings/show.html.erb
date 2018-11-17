@@ -1,29 +1,63 @@
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Listing</h1>
+  </div>
+<%= render 'layouts/nav' %>
+
 <p id="notice"><%= notice %></p>
 
+<div class = "container">
 
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>State</th>
+        <th>Description</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+ 	   <ol>
 
-<p>
-  <strong>Title:</strong>
+<tr><td><li>
+
   <%= @listing.title %>
-</p>
+</td>
 
-<p>
-  <strong>Price:</strong>
+<td>
+
   <%= @listing.price %>
-</p>
+</td>
 
-<p>
-  <strong>State:</strong>
-  <%= @listing.state %>
-</p>
+<td>
 
-<p>
-  <strong>Description:</strong>
+  <% if @listing.state = 1 %>
+  <% @str = "Active" %>
+  <%= @str %> 
+  <% else %>
+  <% @str = "Inactive" %>
+  <%= @str %>
+  <% end %>
+</td>
+
+<td>
+
   <%= @listing.description %>
-</p>
+</td>
+<td>
+<%= image_tag @listing.avatar.url(:medium) %></td>
+<td>
+	<% if @shop.users.include? @current_user %>
+<h6> <%= link_to 'Delete Listing', "/shops/#{@shop.id}/listings/#{listing.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+	<h6> <%= link_to 'Edit Listing', "/shops/#{@shop.id}/listings/#{listing.id}/edit" %> </h6>
+<br></li> </td></tr>
+</ol>
 
-<%= image_tag @listing.image_url %>
+<% end %>
+
+</tbody></table>
 
 
-<%= link_to 'Edit', edit_shop_listing_path(@listing) %> |
-<%= link_to 'Back', shop_listings_path(@listing) %>
+<%= link_to 'Edit', edit_shop_listing_path(@listing) %> 
+

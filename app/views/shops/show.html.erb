@@ -1,8 +1,8 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
   <h1><%= @shop.name %></h1>
-  <h6>owned by 
+  <h6>owned by </h6>
   <% @shop.users.each do |user| %>
-<%= link_to user.username, "/users/#{user.id}", {:style=>'color:#00BBFF;', :class => "css_class"}  %> </h6>
+<%= link_to user.username, "/users/#{user.id}", {:style=>'color:#00BBFF;', :class => "css_class"}  %> <br>
 <% end %>
   </div>
 
@@ -16,7 +16,77 @@
   <%= @shop.description %>
 </p>
 
+<% if @shop.users.include? @current_user %>
+      <td>  <div class = "form-group">
 
-
-<%= link_to 'Back', shops_path %>
+<h6 class = "text-muted">Add an owner:</h6>
+<%= form_with url: "/shops/#{@shop.id}/users" do |form| %>
+  <%= form.collection_select :user_id, @users, :id, :username, prompt: true %>
+    <div class = "badge">
+  <%= form.submit 'Add Owner'%>
 </div>
+<% end %>
+</div></td>
+<h5>Listings</h5>
+
+</h6><%= link_to 'Create New Listing', new_shop_listing_path(@shop) %></h6>
+<% end %>
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>State</th>
+        <th>Description</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+ 	   <ol>
+<% @shop.listings.each do |listing| %>
+
+<tr><td><li>
+
+  <%= listing.title %>
+</td>
+
+<td>
+
+  <%= listing.price %>
+</td>
+
+<td>
+
+  <% if listing.state = 1 %>
+  <% @str = "Active" %>
+  <%= @str %> 
+  <% else %>
+  <% @str = "Inactive" %>
+  <%= @str %>
+  <% end %>
+</td>
+
+<td>
+
+  <%= listing.description %>
+</td>
+<td>
+<%= image_tag listing.avatar.url(:medium) %></td>
+<td>
+	<% if @shop.users.include? @current_user %>
+<h6> <%= link_to 'Delete Listing', "/shops/#{@shop.id}/listings/#{listing.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
+	<h6> <%= link_to 'Edit Listing', "/shops/#{@shop.id}/listings/#{listing.id}/edit" %> </h6>
+<br></li> </td></tr>
+</ol>
+
+<% end %>
+
+<% end %></tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+<%= link_to 'Back', shops_path %>

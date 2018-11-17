@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users do
-  	resources :shops 
+  	resources :shops
 	end
+
 
  resources :shops do
 	  resources :listings do
@@ -18,5 +19,9 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
   post '/shops/:shop_id/listings/:id', to: 'listings#state'
+
+  post '/shops/:id/users', to: 'shops#add_user'
+  delete '/shops/:id/users/:user_id', to: 'shops#delete_user'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

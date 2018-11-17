@@ -2,7 +2,6 @@ require 'pry'
 class ListingsController < ApplicationController
   before_action :set_listing, except: [:create, :new, :index]
   before_action :set_shop
-  before_action :set_user, except: [:edit, :update]
 
   # GET /listings
   # GET /listings.json
@@ -28,12 +27,12 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    binding.pry
-    @listing = @shop.listings.new({"title"=>"asdf", "price"=>".3", "state"=>"1", "description"=>"asdf", "image"=>nil})
-
+    @listing = @shop.listings.create(listing_params)
+    
     respond_to do |format|
       if @listing.save
-        format.html { redirect_to "/shops/#{@shop.id}/listings/#{@listing.id}", notice: 'Listing was successfully created.' }
+
+        format.html { redirect_to "/shops/#{@shop.id}"}
         format.json { render :show, status: :created, location: @listing }
       else
         format.html { render :new }
@@ -47,7 +46,7 @@ class ListingsController < ApplicationController
   def update
     respond_to do |format|
       if @listing.update(listing_params)
-        format.html { redirect_to "/shops/#{@shop.id}/listings/#{@listing.id}", notice: 'Listing was successfully updated.' }
+        format.html { redirect_to "/shops/#{@shop.id}/listings/#{@listing.id}"}
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }
@@ -61,7 +60,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to "/shops/#{@shop.id}/listings", notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to "/shops/#{@shop.id}"}
       format.json { head :no_content }
     end
   end
@@ -85,11 +84,8 @@ class ListingsController < ApplicationController
       @shop = Shop.find(params[:shop_id])
     end
 
-    def set_user
-       @user = current_user
-   end
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :price, :state, :description, :shop_id, :image, :user_id)
+      params.require(:listing).permit(:title, :price, :state, :description, :shop_id, :avatar)
     end
 end

@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, except: [:index, :new, :create]
   before_action :set_user, except: [:edit, :update]
- 
+
 
   # GET /shops
   # GET /shops.json
@@ -31,7 +31,7 @@ class ShopsController < ApplicationController
 
     respond_to do |format|
       if @shop.save
-        format.html { redirect_to "/users/#{@user.id}/shops/#{@shop.id}", notice: 'Shop was successfully created.' }
+        format.html { redirect_to "/users/#{@user.id}/shops/#{@shop.id}"}
         format.json { render :show, status: :created, location: @shop }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class ShopsController < ApplicationController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to @shop, notice: 'Shop was successfully updated.' }
+        format.html { redirect_to @shop}
         format.json { render :show, status: :ok, location: @shop }
       else
         format.html { render :edit }
@@ -59,9 +59,25 @@ class ShopsController < ApplicationController
   def destroy
     @shop.destroy
     respond_to do |format|
-      format.html { redirect_to shops_url, notice: 'Shop was successfully destroyed.' }
+      format.html { redirect_to shops_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_user
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @shop.users << @user unless @shop.users.include?(@user)
+    end
+    redirect_to "/shops/#{@shop.id}"
+  end
+
+  def delete_user
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @shop.users.delete(@user)
+    end
+    redirect_to "/shops/#{@shop.id}"
   end
 
   private
