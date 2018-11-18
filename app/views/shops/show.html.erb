@@ -76,6 +76,7 @@
 	<% if @shop.users.include? @current_user %>
 <h6> <%= link_to 'Delete Listing', "/shops/#{@shop.id}/listings/#{listing.id}", {:style=>'color:#DC1515;', :class => "css_class", method: :delete }%> <span>&nbsp;&nbsp;</span>
 	<h6> <%= link_to 'Edit Listing', "/shops/#{@shop.id}/listings/#{listing.id}/edit" %> </h6>
+	<h6> <%= link_to 'Buy Item', "/listings/#{listing.id}/orders/new", {:style=>'color:#228B22;', :class => "css_class"} %> </h6>
 <br></li> </td></tr>
 </ol>
 

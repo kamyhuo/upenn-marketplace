@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   get 'session/new'
   get 'session/create'
   get 'session/destroy'
@@ -12,7 +13,12 @@ Rails.application.routes.draw do
  resources :shops do
 	  resources :listings do
 	  	resources :images
+      resources :orders
 	  end
+  end
+
+  resources :listings do
+    resources :orders
   end
 
   get '/login', to: 'session#new'
