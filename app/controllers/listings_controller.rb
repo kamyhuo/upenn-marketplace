@@ -1,4 +1,3 @@
-require 'pry'
 class ListingsController < ApplicationController
   before_action :set_listing, except: [:create, :new, :index]
   before_action :set_shop
