@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :orders
+  resources :charges
   get 'session/new'
   get 'session/create'
   get 'session/destroy'

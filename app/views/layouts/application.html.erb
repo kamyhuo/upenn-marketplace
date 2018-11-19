@@ -4,7 +4,8 @@
   <head>
     <title>UpennMarketplace</title>
     <%= csrf_meta_tags %>
-    <%= tag :meta, :name => 'stripe-key', :content => ENV["STRIPE_PUBLIC_KEY"] %>
+  <%= tag :meta, :name=> 'stripe-key', :content => Rails.configuration.stripe[:publishable_key] %>
+
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
