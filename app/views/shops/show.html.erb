@@ -90,7 +90,6 @@
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          Stripe.setPublishableKey("pk_test_TiL6G3hGSyHQI6k1RHDVzAki");
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
           data-amount="<%= listing.price * 100 %>"
