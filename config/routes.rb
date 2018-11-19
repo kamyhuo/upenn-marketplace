@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
   post '/shops/:shop_id/listings/:id', to: 'listings#state'
-
+  patch '/shops/:shop_id/listings/:id', to: 'listings#state'
   post '/shops/:id/users', to: 'shops#add_user'
   delete '/shops/:id/users/:user_id', to: 'shops#delete_user'
   

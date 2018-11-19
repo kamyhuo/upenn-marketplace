@@ -23,7 +23,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '3.1.11'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'carrierwave'
@@ -55,6 +55,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry'
   gem 'pry-rails'
   gem 'sqlite3'
 end

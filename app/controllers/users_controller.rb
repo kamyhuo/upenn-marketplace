@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def destroy
     (@user.destroy && session[:user_id] = nil) if @user == current_user
     reset_session
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def add_shop
