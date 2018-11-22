@@ -36,7 +36,7 @@
 <% @user.shops.each do |shop| %>
     <tr>
 <td>
-    <h1><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h1></td>
+    <h1><b><%= link_to shop.name, "/shops/#{shop.id}",{:style=>'color:#5E5D11;', :class => "css_class"} %> </h1></td></b>
       <h5 class="badge badge-light">Shop Description: </h5>
         <h9><%= shop.description %> </h9>
 <br>
