@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   patch '/shops/:shop_id/listings/:id', to: 'listings#state'
   post '/shops/:id/users', to: 'shops#add_user'
   delete '/shops/:id/users/:user_id', to: 'shops#delete_user'
+  delete '/shops/:shop_id', to: 'shops#destroy'
+
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -57,6 +57,7 @@ class ShopsController < ApplicationController
   # DELETE /shops/1
   # DELETE /shops/1.json
   def destroy
+    @user.shops.delete(@shop)
     @shop.destroy
     respond_to do |format|
       format.html { redirect_to shops_url }
