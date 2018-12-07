@@ -52,6 +52,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user.shops do |shop|
+      if shop.users.length == 1
+        shop.destroy
+      end
+    end
     (@user.destroy && session[:user_id] = nil) if @user == current_user
     reset_session
     redirect_to root_path
