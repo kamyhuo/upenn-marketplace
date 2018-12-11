@@ -57,12 +57,10 @@
 
 <td>
 
-  <% if listing.state = 1 %>
-  <% @str = "Active" %>
-  <%= @str %> 
+  <% if listing.state == "1" %>
+Active
   <% else %>
-  <% @str = "Inactive" %>
-  <%= @str %>
+Inactive
   <% end %>
 </td>
 
