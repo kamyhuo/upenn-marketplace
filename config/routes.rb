@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :users do
-  	resources :shops
-	end
+    resources :shops
+  end
 
 
  resources :shops do
-	  resources :listings do
-	  	resources :images
+    resources :listings do
+      resources :images
       resources :orders
-	  end
+    end
   end
 
   resources :listings do

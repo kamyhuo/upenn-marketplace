@@ -27,7 +27,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'carrierwave'
-gem "paperclip", "~> 6.0.0"
+gem 'paperclip', '~> 6.0.0'
 gem 'stripe'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

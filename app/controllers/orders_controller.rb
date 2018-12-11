@@ -80,7 +80,8 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Order was
+       successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -91,7 +92,8 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only 
+    #allow the white list through.
     def order_params
       params.require(:order).permit(:address, :city, :state)
     end

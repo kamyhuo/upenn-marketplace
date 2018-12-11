@@ -91,7 +91,8 @@ class ShopsController < ApplicationController
        @user = current_user
    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the
+    # white list through.
     def shop_params
       params.require(:shop).permit(:name, :description, :user_id)
     end
