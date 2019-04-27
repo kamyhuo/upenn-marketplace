@@ -1,5 +1,5 @@
-# README: upenn-marketplace
+# upenn-marketplace
 
-Website made with Ruby on Rails that allows users to create shops to buy/sell items. Employs Stripe API.
+Allows users to create shops to buy/sell items. Employs Stripe API. Made with Ruby on Rails.
 
 
